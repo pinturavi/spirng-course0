@@ -1,0 +1,5 @@
+types of versioning the routes
+    1. uri based.
+    2. request param based.
+    3. header based.
+    4.
