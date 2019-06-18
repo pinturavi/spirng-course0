@@ -13,27 +13,27 @@ class UserController(val userService: UserService) {
     fun getUsers() = userService.findAll()
 
     @GetMapping("/{id}")
-    fun getUser(@PathVariable("id") id: Int): Resource<User?> {
+    fun getUser(@PathVariable("id") id: Long): User? {
         val user = userService.findOne(id)
         val resource:Resource<User?>  = Resource(user)
         val link = linkTo(methodOn(this.javaClass).getUsers()).withRel("all-users")
         resource.add(link)
-       return  resource
+       return  user
     }
 
     @PostMapping
     fun addUser(@Valid @RequestBody user: User) = userService.addUser(user)
 
     @DeleteMapping("/{id}")
-    fun removeUser(@PathVariable("id") id: Int) = userService.removeOne(id)
+    fun removeUser(@PathVariable("id") id: Long) = userService.removeOne(id)
 
     @GetMapping("/{id}/posts")
-    fun getAllPosts(@PathVariable("id") id: Int) = userService.findAllPosts(id)
+    fun getAllPosts(@PathVariable("id") id: Long) = userService.findAllPosts(id)
 
     @GetMapping("/{id}/posts/{post_id}")
-    fun findPostById(@PathVariable("id")id:Int, @PathVariable("post_id") postId:Int) = userService.findPostbyId(id, postId)
+    fun findPostById(@PathVariable("id")id:Long, @PathVariable("post_id") postId:Long) = userService.findPostbyId(id, postId)
 
     @PutMapping("/{id}/posts")
-    fun addPost(@PathVariable("id") id:Int, @RequestBody post: Post) = userService.addPost(id, post)
+    fun addPost(@PathVariable("id") id:Long, @RequestBody post: Post) = userService.addPost(id, post)
 
 }

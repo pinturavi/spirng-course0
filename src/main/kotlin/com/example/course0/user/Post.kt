@@ -1,9 +1,17 @@
 package com.example.course0.user
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import javax.persistence.*
 
 @Entity
+@JsonIgnoreProperties("user")
+data class Post(
+        @Id
+        @GeneratedValue
+        var id: Long = 0,
 
-data class Post(@Id @GeneratedValue var id:Int, var name:String)
+        var description: String,
+
+        @ManyToOne(fetch = FetchType.LAZY)
+        var user:User?=null
+)

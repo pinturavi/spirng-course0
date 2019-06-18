@@ -15,4 +15,4 @@ class FilteringController{
 }
 
 @JsonIgnoreProperties("id", "age")
-data class Student(@get:JsonIgnore val id:Int, val name:String, val age:Int)
+data class Student(@get:JsonIgnore val id: Long, val name:String, val age:Int)
